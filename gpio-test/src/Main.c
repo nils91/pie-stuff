@@ -10,5 +10,7 @@
 #include <wiringPi.h>
 
 int main(int argc, char **argv) {
-	printf("Hallo\n");
+	printf("Setting up wiringPi\n");
+	//setup wiring pi
+	wiringPiSetup();
 }
