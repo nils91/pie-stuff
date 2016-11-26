@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
 	//Set pin 0 as out
 	pinMode(0, OUTPUT);
 	while(1){
+		printf("switching...\n");
 		digitalWrite(0,!digitalRead(0)); //invert pin 0
 		sleep(2);
 	}
