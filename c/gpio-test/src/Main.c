@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
 	pinMode(LED_ON, OUTPUT);
 	pinMode(LED_OFF, OUTPUT);
 	turn_off();
-	while(1){
+	for(int i=0;i<10;i++){
 		sleep(2);
 		printf("switching ");
 		if(get_status()==LOW){
@@ -32,6 +32,7 @@ int main(int argc, char **argv) {
 			printf("off\n");
 		}
 	}
+	all_off();
 }
 void turn_on(){
 	digitalWrite(RELAIS, HIGH);
@@ -42,6 +43,11 @@ void turn_off(){
 	digitalWrite(RELAIS, LOW);
 		digitalWrite(LED_ON, LOW);
 		digitalWrite(LED_OFF, HIGH);
+}
+void all_off(){
+	digitalWrite(RELAIS, LOW);
+		digitalWrite(LED_ON, LOW);
+		digitalWrite(LED_OFF, LOW);
 }
 int get_status(){
 	return digitalRead(RELAIS);
