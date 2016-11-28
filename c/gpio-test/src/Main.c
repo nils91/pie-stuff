@@ -22,6 +22,7 @@ int main(int argc, char **argv) {
 	pinMode(LED_OFF, OUTPUT);
 	turn_off();
 	while(1){
+		sleep(2);
 		printf("switching ");
 		if(get_status()==LOW){
 			turn_on();
@@ -30,7 +31,6 @@ int main(int argc, char **argv) {
 			turn_off();
 			printf("off\n");
 		}
-		sleep(2);
 	}
 }
 void turn_on(){
