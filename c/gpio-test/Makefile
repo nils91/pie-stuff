@@ -1,2 +1,2 @@
 all:
-	gcc -lwiringPi src/Main.c
+	gcc -std=c99 -lwiringPi src/Main.c
