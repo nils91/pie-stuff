@@ -51,7 +51,7 @@ void turn_on(){
 	digitalWrite(LED_OFF, LOW);
 }
 void turn_off(){
-	turn_off_time=time(0)
+	turn_off_time=time(0);
 	digitalWrite(RELAIS, LOW);
 		digitalWrite(LED_ON, LOW);
 		digitalWrite(LED_OFF, HIGH);
