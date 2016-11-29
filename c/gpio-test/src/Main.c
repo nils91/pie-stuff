@@ -22,7 +22,13 @@ int main(int argc, char **argv) {
 	pinMode(LED_OFF, OUTPUT);
 	pinMode(BUTTON_IN, INPUT);
 	pullUpDnControl(BUTTON_IN,PUD_DOWN);
-	wiringPiISR(BUTTON_IN,INT_EDGE_RISING,&ISR_in);
+	wiringPiISR(BUTTON_IN,INT_EDGE_RISING,&ISR_btn_in);
+	pinMode(BUTTON_OUT, INPUT);
+		pullUpDnControl(BUTTON_OUT,PUD_DOWN);
+		wiringPiISR(BUTTON_OUT,INT_EDGE_RISING,&ISR_btn_out);
+		pinMode(BUTTON_CONF, INPUT);
+			pullUpDnControl(BUTTON_CONF,PUD_DOWN);
+			wiringPiISR(BUTTON_CONF,INT_EDGE_RISING,&ISR_btn_conf);
 	turn_off();
 	for(int i=0;i<10;i++){
 		sleep(2);
@@ -56,6 +62,12 @@ int get_status(){
 	return digitalRead(RELAIS);
 }
 
-void ISR_in(){
+void ISR_btn_in(){
 	printf("in btn pressed\n");
+}
+void ISR_btn_out(){
+	printf("out btn pressed\n");
+}
+void ISR_btn_conf(){
+	printf("conf btn pressed\n");
 }
