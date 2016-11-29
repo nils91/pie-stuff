@@ -20,6 +20,9 @@ int main(int argc, char **argv) {
 	pinMode(RELAIS, OUTPUT);
 	pinMode(LED_ON, OUTPUT);
 	pinMode(LED_OFF, OUTPUT);
+	pinMode(BUTTON_IN, INPUT);
+	pullUpDnControl(BUTTON_IN,PUD_DOWN);
+	wiringPiISR(BUTTON_IN,INT_EDGE_RISING,&ISR_in);
 	turn_off();
 	for(int i=0;i<10;i++){
 		sleep(2);
@@ -51,4 +54,8 @@ void all_off(){
 }
 int get_status(){
 	return digitalRead(RELAIS);
+}
+
+void ISR_in(){
+	printf("in btn pressed\n");
 }

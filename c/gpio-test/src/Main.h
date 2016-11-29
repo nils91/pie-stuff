@@ -11,10 +11,12 @@
 #define RELAIS 0
 #define LED_ON 29
 #define LED_OFF 24
+#define BUTTON_IN 1
 
 void turn_on(void);
 void turn_off(void);
 void all_off(void);
 int get_status(void);
+void ISR_in(void);
 
 #endif /* SRC_MAIN_H_ */
