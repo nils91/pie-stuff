@@ -12,6 +12,9 @@
 
 #include "Main.h"
 
+unsigned long turn_on_time=0;
+unsigned long turn_off_time=0;
+
 int main(int argc, char **argv) {
 	printf("Setting up wiringPi\n");
 	//setup wiring pi
@@ -30,25 +33,25 @@ int main(int argc, char **argv) {
 			pullUpDnControl(BUTTON_CONF,PUD_DOWN);
 			wiringPiISR(BUTTON_CONF,INT_EDGE_RISING,&ISR_btn_conf);
 	turn_off();
-	for(int i=0;i<10;i++){
-		sleep(2);
-		printf("switching ");
-		if(get_status()==LOW){
-			turn_on();
-			printf("on\n");
-		}else{
-			turn_off();
-			printf("off\n");
+	for(;;){
+		if(get_status()==HIGH){
+			if(time(0)-turn_on_time > 3){
+				turn_off();
+			}
 		}
+		delay(200);
+
 	}
 	all_off();
 }
 void turn_on(){
+	turn_on_time=time(0);
 	digitalWrite(RELAIS, HIGH);
 	digitalWrite(LED_ON, HIGH);
 	digitalWrite(LED_OFF, LOW);
 }
 void turn_off(){
+	turn_off_time=time(0)
 	digitalWrite(RELAIS, LOW);
 		digitalWrite(LED_ON, LOW);
 		digitalWrite(LED_OFF, HIGH);
@@ -63,11 +66,11 @@ int get_status(){
 }
 
 void ISR_btn_in(){
-	printf("in btn pressed\n");
+	turn_on();
 }
 void ISR_btn_out(){
-	printf("out btn pressed\n");
+	turn_on();
 }
 void ISR_btn_conf(){
-	printf("conf btn pressed\n");
+	turn_off();
 }
